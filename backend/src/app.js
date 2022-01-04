@@ -1,9 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const Job = require("./job");
 const app = express();
-const port = 8082;
+const port = process.env.PORT || 8082;
 
-const uri = "mongodb+srv://findadatabase:H6equKdFGKeeNz@cluster0.e8fmd.mongodb.net/data1?retryWrites=true&w=majority";
+app.use(express.json());
+
+const uri = "mongodb+srv://findadatabase:H6equKdFGKeeNz@cluster0.e8fmd.mongodb.net/finda?retryWrites=true&w=majority";
 
 mongoose.connect(uri,
 { useNewUrlParser: true, useUnifiedTopology: true }
@@ -15,9 +18,29 @@ mongoose.connect(uri,
 
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Welcome To Finda Backend");
+});
+
+app.post("/jobs",(req, res) => {
+  console.log("New Job Added");
+  console.log(req.body);
+  const newJob = new Job(req.body);
+  newJob.save().then(() => {
+    res.status(201).send(newJob);
+  }).catch((e) => {
+    res.status(400).send(e);
+  }); 
+});
+
+app.get("/jobs", async (req,res) => {
+  try {
+    const jobData = await Job.find();
+    res.send(jobData);
+  } catch (error) {
+    res.status(404).send(error);
+  }
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Backend Started at http://localhost:${port}`);
 });
