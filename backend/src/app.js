@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const Job = require("./job");
 const app = express();
 const port = process.env.PORT || 8082;
@@ -25,6 +26,7 @@ app.use(
   })
 );
 //http://localhost:8001
+
 app.get("/", (req, res) => {
   res.send("Welcome To Finda Backend");
 });
