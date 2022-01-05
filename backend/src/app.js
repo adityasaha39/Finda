@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const Job = require("./job");
 const app = express();
 const port = process.env.PORT || 8082;
@@ -15,6 +16,12 @@ mongoose.connect(uri,
 }).catch((err)=>{
     console.log(err);
 });
+
+app.use(
+  cors({
+    origin: "http://localhost:8000",
+  })
+);
 
 
 app.get("/", (req, res) => {

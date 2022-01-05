@@ -22,10 +22,7 @@
     width: 30%;
 }
 
-.date-picker{
-    /* position: absolute; */
-    margin-left: -3.5rem;
-}
+
 
 @media only screen and (max-width: 600px) {
     .body-container{
@@ -37,9 +34,5 @@
     .label{
         padding: 2px;
         width: 40%;
-    }
-    .date-picker{
-        /* position: absolute; */
-        margin-left: -2.4rem;
     }
   }
