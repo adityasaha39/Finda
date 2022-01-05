@@ -31,11 +31,13 @@ p {
   justify-content: center;
 }
 
-button {
+a {
   background-color: #45c484;
   padding: 5px;
   color: #fff;
   border: 2px solid rgb(64, 130, 206);
+  border-radius: 8px;
   font-size: 20px;
   margin-top: 13px;
+  text-decoration: none;
 }
